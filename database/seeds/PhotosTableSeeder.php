@@ -9,10 +9,7 @@ class PhotosTableSeeder extends Seeder
         $albumIds = \App\Album::all()->pluck('id');
 
         foreach ($albumIds as $id) {
-            factory(App\Photo::class, 6)->create()->each(function ($p) use ($id) {
-                $p->album_id = $id;
-                $p->save();
-            });
+            factory(App\Photo::class, 6)->create(['album_id' => $id]);
         }
     }
 }

@@ -9,12 +9,12 @@ Route::get('/create', 'AlbumController@create');
 Route::post('/create', 'AlbumController@store');
 
 Route::get('/admin', 'AlbumController@albums');
-Route::post('/saveAlbumIdx', 'AlbumController@newData');
+Route::post('/saveAlbumOrder', 'AlbumController@newData');
 
-Route::get('/admin/album/{album}', 'AlbumController@Edit');
+Route::get('/admin/album/{album}', 'AlbumController@edit');
 Route::get('/front/album/{album}', 'AlbumController@album');
 
-Route::post('/savePhotoIdx', 'PhotoController@saveIdx');
+Route::post('/savePhotoOrder', 'PhotoController@saveOrder');
 Route::get('/admin/add_photos/{album}', 'PhotoController@add');
 Route::post('/admin/add_photo', 'PhotoController@store')->name('admin.add_photo');
 

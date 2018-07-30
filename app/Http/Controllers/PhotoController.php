@@ -27,7 +27,7 @@
                 // заполняю данные для таблицы photo
                 $photo = new Photo;
                 $photo->album_id = Album::where('name', $album)->value('id');  // подтягиваю ID альбома
-                $photo->idx = count(Photo::all());  
+                $photo->order = count(Photo::all());
                 $photo->name = $request['name'];
                 $photo->file = $filename;
                 $photo->save();
@@ -43,19 +43,19 @@
             return view('admin.add_photos', compact('album'));
         }
         
-        public function saveIdx()
+        public function saveOrder()
         {              
             $list = request('list');
             $output = array();
             $list = parse_str($list, $output);  // заношу полученную из POST строку в массив
             $ids = $output['item'];
             
-            $idx = 1;
+            $order = 1;
             foreach ($ids as $id) {
                 $photo = Photo::find($id);
-                $photo->idx = $idx;
+                $photo->order = $order;
                 $photo->save();
-                $idx++;
+                $order++;
             } 
         }   
     }

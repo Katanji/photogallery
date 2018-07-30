@@ -29,7 +29,7 @@
                         var postData = $(this).sortable('serialize');
                         console.log(postData);
                         
-                        $.post('/saveAlbumIdx', {list: postData}, function(o) {
+                        $.post('/saveAlbumOrder', {list: postData}, function(o) {
                             console.log(o);
                         });
                     }

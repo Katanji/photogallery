@@ -6,6 +6,8 @@ class AlbumsTableSeeder extends Seeder
 {
     public function run()
     {
-        factory(App\Album::class, 10)->create();
+        for ($i = 1; $i < 11; $i++) {
+            factory(App\Album::class, 1)->create(['order' => $i]);
+        }
     }
 }
