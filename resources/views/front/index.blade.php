@@ -4,11 +4,11 @@
 
 <ul id="sortable">  
     @foreach ($albums as $album)
-    <a href="http://photogallery.katanji.tk/front/album/{{ $album->name }}">
+    <a href="{{ url("front/album/$album->id") }}">
         <li class="ui-state-default">
             @foreach ($photos as $photo)
                 @if ($album->id == $photo->album_id)
-                    <img src="/public/images/{{ $photo->file }}"><br>
+                    <img src="{{asset('images/'.$photo->file)}}"><br>
                     @break
                 @endif
             @endforeach

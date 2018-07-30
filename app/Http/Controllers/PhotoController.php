@@ -9,8 +9,8 @@
     
     class PhotoController extends Controller
     {
-        public function store(Request $request)
-        {  
+        public function store(Request $request, $album_id)
+        {
             $this->validate($request, array(
                 'name' => 'required|max:32'
             ));
@@ -23,11 +23,10 @@
                 Image::make($image)->resize(300, 200)->save($location);
                 
                 $album = substr(strrchr(url()->previous(), "/"), 1);
-                
-                // заполняю данные для таблицы photo
+
                 $photo = new Photo;
-                $photo->album_id = Album::where('name', $album)->value('id');  // подтягиваю ID альбома
-                $photo->order = count(Photo::all());
+                $photo->album_id = $album_id;
+                $photo->order = Photo::all()->count();
                 $photo->name = $request['name'];
                 $photo->file = $filename;
                 $photo->save();
@@ -38,18 +37,18 @@
             }
         } 
         
-        public function add($album)
-        {  
-            return view('admin.add_photos', compact('album'));
+        public function add($albumId)
+        {
+            return view('admin.add_photos', compact('albumId'));
         }
         
         public function saveOrder()
-        {              
-            $list = request('list');
-            $output = array();
+        {
+            $list = request()->list;
+            $output = [];
             $list = parse_str($list, $output);  // заношу полученную из POST строку в массив
             $ids = $output['item'];
-            
+
             $order = 1;
             foreach ($ids as $id) {
                 $photo = Photo::find($id);

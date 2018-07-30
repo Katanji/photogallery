@@ -20,8 +20,6 @@
                 }
             });
             
-            console.log('test');
-            
             $(function() {    
                 $('#sortable').sortable({
                     update: function(event, ui) {
@@ -42,12 +40,12 @@
         @include ('layouts.nav')
         
         <div class="container">
-            <h1>Album: {{ $album }}</h1>
-            <a href="http://photogallery.katanji.tk/admin/add_photos/{{ $album }}" class="button--style-red">Add photos</a>
+            <h1>Album: {{ $album->name }}</h1>
+            <a href="{{ url("admin/add_photos/$album->id") }}" class="button--style-red">Add photos</a>
             
             <ul id="sortable">  
                 @foreach ($photos as $photo)
-                <li class="ui-state-default" id="item_{{ $photo->id }}"><img src="/public/images/{{ $photo->file }}"></li>
+                <li class="ui-state-default" id="item_{{ $photo->id }}"><img src="{{asset('images/'.$photo->file)}}"></li>
                 @endforeach
             </ul>
         </div>   

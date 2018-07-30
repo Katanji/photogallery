@@ -70,19 +70,19 @@ class AlbumController extends Controller
         }
     }
 
-    public function edit($album)
+    public function edit($albumId)
     {
-        $albumId = Album::where('name', $album)->first();
-        $photos = Photo::where('album_id', $albumId['id'])->orderBy('order')->get();
+        $album = Album::find($albumId);
+        $photos = Photo::where('album_id', $albumId)->orderBy('order')->get();
 
         return view('admin.album', compact('photos', 'album'));
     }
 
-    public function album($album)
+    public function album($albumId)
     {
-        $albumId = Album::where('name', $album)->first();
-        $photos = Photo::where('album_id', $albumId['id'])->orderBy('order')->get();
+        $album = Album::find($albumId);
+        $photos = Photo::where('album_id', $albumId)->orderBy('order')->get();
 
-        return view('front.album', compact('photos', 'albumId'));
+        return view('front.album', compact('photos', 'album'));
     }
 }
