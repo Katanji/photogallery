@@ -27,7 +27,8 @@ class AlbumController extends Controller
     public function albums()
     {
         $albums = Album::orderBy('order')->get();
-        return view('admin.albums', compact('albums'));
+        $photo = Photo::orderBy('order')->first();
+        return view('admin.albums', compact('albums', 'photo'));
     }
 
     public function create()
