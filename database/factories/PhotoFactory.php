@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Photo::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Photo::class, function (Faker\Generator $faker) {
     return [
         'order' => $faker->randomDigit,
         'name' => $faker->word,

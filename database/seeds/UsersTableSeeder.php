@@ -14,6 +14,6 @@ class UsersTableSeeder extends Seeder
             'remember_token' => '1111'
         ]);
 
-        factory(App\User::class, 10)->create();
+        factory(App\Models\User::class, 10)->create();
     }
 }

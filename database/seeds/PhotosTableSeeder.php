@@ -6,10 +6,10 @@ class PhotosTableSeeder extends Seeder
 {
     public function run()
     {
-        $albumIds = \App\Album::all()->pluck('id');
+        $albumIds = \App\Models\Album::all()->pluck('id');
 
         foreach ($albumIds as $id) {
-            factory(App\Photo::class, 6)->create(['album_id' => $id]);
+            factory(App\Models\Photo::class, 6)->create(['album_id' => $id]);
         }
     }
 }

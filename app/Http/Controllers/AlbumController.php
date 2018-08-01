@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AlbumRequest;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Album;
-use App\User;
-use App\Photo;
-use Image;
+use App\Models\Album;
+use App\Models\Photo;
 
 class AlbumController extends Controller
 {
