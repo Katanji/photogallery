@@ -12,6 +12,18 @@
             #sortable { list-style-type: none; margin: 0; padding: 0;  }
             #sortable li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 30%; height: 10%; text-align: center; }
             img {width: 100%;}
+            .pic-name {
+                text-align: center !important;
+            }
+
+            .photo {
+                width: 100%;
+            }
+
+            .pictLink {
+                text-decoration: none;
+                color: black;
+            }
         </style>       
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="/js/jquery.magnific-popup.min.js"></script>

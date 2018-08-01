@@ -18,15 +18,25 @@ class AlbumController extends Controller
 
     public function master()
     {
-        $albums = Album::orderBy('order')->paginate(12);
-        $photos = Photo::orderBy('order')->get();
+//        $albums = Album::orderBy('order')->paginate(12);
+//        $photos = Photo::orderBy('order')->get();
+//
+//        return view('front.index', compact('albums', 'photos'));
 
-        return view('front.index', compact('albums', 'photos'));
+        $albums = Album::orderBy('order')->with('photos')->paginate(12);
+
+        foreach ($albums as $album) {
+            $avatar = Photo::where('album_id', $album->id)->orderBy('order')->first();
+            $avatar === null ?: $album->avatar = $avatar->file;
+        }
+
+        return view('admin.albums', compact('albums'));
     }
 
     public function albums()
     {
-        $albums = Album::orderBy('order')->with('photos')->get();
+//        $albums = Album::orderBy('order')->with('photos')->get();
+        $albums = Album::orderBy('order')->with('photos')->paginate(12);
 
         foreach ($albums as $album) {
             $avatar = Photo::where('album_id', $album->id)->orderBy('order')->first();
