@@ -10,9 +10,9 @@
                         @if ($album->id == $photo->album_id)
                             <img src="{{asset('images/'.$photo->file)}}"><br>
                             @break
+                            {{ $album->name }}
                         @endif
                     @endforeach
-                    {{ $album->name }}
                 </li>
             </a>
         @endforeach
