@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SessionsController extends Controller
 {
@@ -23,14 +23,15 @@ class SessionsController extends Controller
 				'message' => 'Please check your credentials and try again'
 			]);
 		}
-		
-		return redirect('/admin');
+
+		if (auth()->user()->email == "admin@admin.com") return redirect('/admin');
+
+        return redirect('/');
     }
     
     public function destroy()
     {
         auth()->logout();
-        
         return redirect('/');
     }
 }

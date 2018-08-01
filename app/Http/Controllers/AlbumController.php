@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AlbumRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Album;
@@ -18,11 +19,6 @@ class AlbumController extends Controller
 
     public function master()
     {
-//        $albums = Album::orderBy('order')->paginate(12);
-//        $photos = Photo::orderBy('order')->get();
-//
-//        return view('front.index', compact('albums', 'photos'));
-
         $albums = Album::orderBy('order')->with('photos')->paginate(12);
 
         foreach ($albums as $album) {
@@ -30,7 +26,7 @@ class AlbumController extends Controller
             $avatar === null ?: $album->avatar = $avatar->file;
         }
 
-        return view('admin.albums', compact('albums'));
+        return view('front.index', compact('albums'));
     }
 
     public function albums()
@@ -51,16 +47,11 @@ class AlbumController extends Controller
         return view('admin.create');
     }
 
-    public function store()
+    public function store(AlbumRequest $request)
     {
-        $this->validate(request(), [
-            'name' => 'required|unique:albums|max:191',
-            'description' => 'required|max:191'
-        ]);
-
         $data = [
-            'name' => request('name'),
-            'description' => request('description')
+            'name' => $request['name'],
+            'description' => $request['description']
         ];
 
         $data['order'] = Album::all('order')->count() + 1;
