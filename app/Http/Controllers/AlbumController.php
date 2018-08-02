@@ -66,25 +66,23 @@ class AlbumController extends Controller
 
         $order = 1;
         foreach ($ids as $id) {
-            $album = Album::find($id);
+            $album = Album::findOrFail($id);
             $album->order = $order;
             $album->save();
             $order++;
         }
     }
 
-    public function edit($albumId)
+    public function edit(Album $album)
     {
-        $album = Album::find($albumId);
-        $photos = Photo::where('album_id', $albumId)->orderBy('order')->get();
+        $photos = Photo::where('album_id', $album->id)->orderBy('order')->get();
 
         return view('admin.album', compact('photos', 'album'));
     }
 
-    public function album($albumId)
+    public function album(Album $album)
     {
-        $album = Album::find($albumId);
-        $photos = Photo::where('album_id', $albumId)->orderBy('order')->get();
+        $photos = Photo::where('album_id', $album->id)->orderBy('order')->get();
 
         return view('front.album', compact('photos', 'album'));
     }

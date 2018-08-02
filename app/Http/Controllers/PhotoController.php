@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PhotoRequest;
+use App\Models\Album;
 use App\Models\Photo;
 use Image;
 
@@ -32,9 +33,9 @@ class PhotoController extends Controller
         }
     }
 
-    public function add($albumId)
+    public function add(Album $album)
     {
-        return view('admin.add_photos', compact('albumId'));
+        return view('admin.add_photos', compact('album'));
     }
 
     public function saveOrder()
@@ -46,7 +47,7 @@ class PhotoController extends Controller
 
         $order = 1;
         foreach ($ids as $id) {
-            $photo = Photo::find($id);
+            $photo = Photo::findOrFail($id);
             $photo->order = $order;
             $photo->save();
             $order++;

@@ -6,7 +6,7 @@
 
 <hr>
 
-{!! Form::open(array('route' => ['admin.add_photo', $albumId], 'data-parsley-validate' => '', 'files' => true)) !!}
+{!! Form::open(array('route' => ['admin.add_photo', $album->id], 'data-parsley-validate' => '', 'files' => true)) !!}
     {{ Form::label('name', 'Name:') }}
     {{ Form::text('name', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '32')) }}
 
