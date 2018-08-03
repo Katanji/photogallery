@@ -2,18 +2,18 @@
 
 @section ('content')
 
-<h1>Add photo</h1>
+    <h1>Add photo</h1>
 
-<hr>
+    <hr>
 
-{!! Form::open(array('route' => ['admin.add_photo', $album->id], 'data-parsley-validate' => '', 'files' => true)) !!}
+    {!! Form::open(array('route' => ["admin.albums.photos.store", $album->id], 'data-parsley-validate' => '', 'files' => true)) !!}
     {{ Form::label('name', 'Name:') }}
     {{ Form::text('name', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '32')) }}
 
     {{ Form::label('featured_image', 'Upload Featured Image(JPEG, PNG, JPG):') }}
     {{ Form::file('featured_image') }}
-    
-    {{ Form::submit('Add', array('class' => 'btn btn-primary')) }}
-{!! Form::close() !!}
+
+    {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
+    {!! Form::close() !!}
 
 @endsection

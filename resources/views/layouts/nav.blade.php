@@ -11,7 +11,7 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar">
-                        <li><a href="{{ url('/create') }}"><span class="glyphicon glyphicon-plus"></span> Add Album</a>
+                        <li><a href="{{ route('admin.albums.create') }}"><span class="glyphicon glyphicon-plus"></span> Add Album</a>
                         </li>
                     </ul>
 

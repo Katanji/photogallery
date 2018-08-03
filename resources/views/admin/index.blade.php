@@ -55,7 +55,7 @@
                     var postData = $(this).sortable('serialize');
                     console.log(postData);
 
-                    $.post('/saveAlbumOrder', {list: postData}, function (o) {
+                    $.post("{{ route('admin.albums.order') }}", {list: postData}, function (o) {
                         console.log(o);
                     });
                 }

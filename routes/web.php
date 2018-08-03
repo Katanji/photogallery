@@ -6,16 +6,39 @@ Route::get('/login', 'Auth\SessionsController@create')->name('login');
 Route::post('/login', 'Auth\SessionsController@store');
 Route::get('/logout', 'Auth\SessionsController@destroy')->name('logout');
 
-Route::get('/', 'AlbumController@master')->name('home');
-Route::get('/create', 'AlbumController@create')->name('album.create');
-Route::post('/create', 'AlbumController@store');
+Route::group(
+    [
+        'prefix'     => 'admin',
+        'as'         => 'admin.',
+        'namespace'  => 'Admin',
+        'middleware' => ['auth']
+    ],
+    function () {
 
-Route::get('/admin', 'AlbumController@albums')->middleware('auth');
-Route::post('/saveAlbumOrder', 'AlbumController@newData');
+        Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/admin/album/{album}', 'AlbumController@edit')->name('admin.album.edit');
-Route::get('/front/album/{album}', 'AlbumController@album')->name('front.album');
+        Route::resource('albums', 'AlbumController');
+        Route::post('/albums/saveOrder', 'AlbumController@saveOrder')->name('albums.order');
 
-Route::post('/savePhotoOrder', 'PhotoController@saveOrder');
-Route::get('/admin/add_photos/{album}', 'PhotoController@add');
-Route::post('/admin/albums/{album}/photos', 'PhotoController@store')->name('admin.add_photo');
+        Route::resource('users', 'UsersController@index');
+
+        Route::resource('albums.photos', 'PhotoController');
+        Route::post('/albums/{album}/photos/order', 'PhotoController@saveOrder')->name('albums.photos.order');
+    }
+);
+
+Route::group(
+    [
+        'as'         => 'front.',
+        'namespace'  => 'Front'
+    ],
+    function () {
+        Route::get('/', 'AlbumController@index')->name('home');
+        Route::get('albums/{album}', 'AlbumController@show')->name('albums.show');
+    }
+);
+
+
+
+
+
