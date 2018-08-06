@@ -40,6 +40,10 @@
                     <li><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in"></span>
                             Login</a></li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url('/register') }}"><span class="glyphicon glyphicon-registration-mark"></span>
+                            Register</a></li>
+                </ul>
 
             @endif
 
