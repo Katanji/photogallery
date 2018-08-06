@@ -15,7 +15,7 @@ class PhotoRequest extends FormRequest
     {
         return [
             'name' => 'required|max:32',
-            'featured_image' => 'required|image'
+            'featured_image' => 'required|image|max:10000'
         ];
     }
 }

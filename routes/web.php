@@ -20,7 +20,7 @@ Route::group(
         Route::resource('albums', 'AlbumController');
         Route::post('/albums/saveOrder', 'AlbumController@saveOrder')->name('albums.order');
 
-        Route::resource('users', 'UsersController@index');
+        Route::resource('users', 'UsersController');
 
         Route::resource('albums.photos', 'PhotoController');
         Route::post('/albums/{album}/photos/order', 'PhotoController@saveOrder')->name('albums.photos.order');

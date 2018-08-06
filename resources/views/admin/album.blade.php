@@ -49,7 +49,7 @@
 </head>
 <body>
 
-@include ('layouts.nav')
+@include ('front.nav')
 
 <div class="container">
     <h1>Album: {{ $album->name }}</h1>

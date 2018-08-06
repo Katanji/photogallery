@@ -65,7 +65,7 @@
 </head>
 <body>
 
-@include ('layouts.nav')
+@include ('front.nav')
 
 <div class="container">
     @yield ('content')
