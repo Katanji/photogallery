@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin\Users;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+/**
+ * @property User $user
+ */
+class StoreUserRequest extends FormRequest
 {
     public function authorize()
     {
@@ -14,8 +18,8 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:32',
-            'email' => 'required|email',
+            'name' => 'required|string|max:32',
+            'email' => 'required|string|email|max:100|unique:users',
             'password' => request()->password === null ? '' : 'required|string'
         ];
     }

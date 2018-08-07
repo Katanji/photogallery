@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\Admin\Users\UpdateUserRequest;
+use App\Http\Requests\Admin\Users\StoreUserRequest;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 
@@ -25,10 +26,8 @@ class UsersController extends Controller
         return view('admin.users.create');
     }
 
-    public function store(UserRequest $request)
+    public function store(StoreUserRequest $request)
     {
-        dd('store');
-
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
@@ -54,7 +53,7 @@ class UsersController extends Controller
         return view('admin.users.edit', compact('user', 'statuses'));
     }
 
-    public function update(UserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
         $dataUser = [
             'name' => $request['name'],
