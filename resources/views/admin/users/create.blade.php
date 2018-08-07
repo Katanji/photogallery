@@ -24,6 +24,11 @@
         </div>
 
         <div class="form-group">
+            <label for="password" class="col-form-label">Password</label>
+            <input id="password" class="form-control" name="password" type="password" required>
+        </div>
+
+        <div class="form-group">
             <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </form>

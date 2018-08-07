@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PhotoRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     public function authorize()
     {
@@ -15,7 +15,8 @@ class PhotoRequest extends FormRequest
     {
         return [
             'name' => 'required|max:32',
-            'featured_image' => 'required|image|max:10000'
+            'email' => 'required|email',
+            'password' => request()->password === null ? '' : 'required|string'
         ];
     }
 }

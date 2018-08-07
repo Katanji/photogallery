@@ -9,6 +9,6 @@ $(document).ready(function() {
         mainClass: 'mfp-fade'
     });
     
-    $("p").text("The DOM is now loaded and can be manipulated.");
+    // $("p").text("The DOM is now loaded and can be manipulated.");
 
 });

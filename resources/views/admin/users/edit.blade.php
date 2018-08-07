@@ -1,11 +1,10 @@
 @extends('layouts.master')
 
 @section('content')
-    @include('admin.users._nav')
 
     <form method="POST" action="{{ route('admin.users.update', $user) }}">
-        @csrf
-        @method('PUT')
+        {{csrf_field()}}
+        {{ method_field('PUT') }}
 
         <div class="form-group">
             <label for="name" class="col-form-label">Name</label>
@@ -24,15 +23,8 @@
         </div>
 
         <div class="form-group">
-            <label for="role" class="col-form-label">Role</label>
-            <select id="role" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="role">
-                @foreach ($roles as $value => $label)
-                    <option value="{{ $value }}"{{ $value === old('role', $user->role) ? ' selected' : '' }}>{{ $label }}</option>
-                @endforeach;
-            </select>
-            @if ($errors->has('role'))
-                <span class="invalid-feedback"><strong>{{ $errors->first('role') }}</strong></span>
-            @endif
+            <label for="password">Password:</label>
+            <input class="form-control" id="password" name="password">
         </div>
 
         <div class="form-group">
