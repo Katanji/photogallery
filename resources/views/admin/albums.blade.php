@@ -7,9 +7,10 @@
             @foreach ($albums as $album)
                 <div class="ui-state col-md-4 col-xs-4" id="item_{{ $album->id }}">
                     <a class="pictLink" href="{{ url("/admin/albums/$album->id/edit")  }}">
-                        <img class="photo img-responsive"
-                             src="{{ $album->avatar === null ? asset('images/1533110727.jpg') : asset('images/'.$album->avatar) }}">
-                        <div class="h5 pic-name"> {{ $album->name }} </div>
+                        @if (!is_null($album->avatar))
+                            <img class="photo img-responsive" src="{{ asset('images/'.$album->avatar) }}">
+                        @endif
+                            <div class="h5 pic-name"> {{ $album->name }} </div>
                     </a>
                 </div>
             @endforeach

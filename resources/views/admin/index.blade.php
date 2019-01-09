@@ -46,8 +46,6 @@
             }
         });
 
-        console.log('test');
-
         $(function () {
             $('#sortable').sortable({
                 update: function (event, ui) {
