@@ -3,5 +3,5 @@ use:
 - laravel 5.6
 
 for start:
-- add your data to: DB_CONNECTION= DB_HOST= DB_PORT= DB_DATABASE= DB_USERNAME= DB_PASSWORD=
-- use migrations for create tables.
+- in .env file add your data to: DB_CONNECTION , DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME and DB_PASSWORD
+- use migrations with --seed for create tables.
