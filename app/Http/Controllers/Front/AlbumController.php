@@ -17,16 +17,6 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        // database
-//        \App\Jobs\SendMessage::withChain([
-//            new PrepareJob('Prepare...'),
-//            new PublishJob('Publish!'),
-//        ])->dispatch('Start Job');
-
-        // redis
-//        Redis::set('user:message:1', 'hi');
-//        var_dump(Redis::keys('*'));
-
         $albums = Album::orderBy('order')->with('photos')->paginate(12);
 
         foreach ($albums as $album) {

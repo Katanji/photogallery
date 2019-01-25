@@ -14,8 +14,7 @@ class HomeController extends Controller
         $albums = Album::orderBy('order')->with('photos')->paginate(12);
 
         foreach ($albums as $album) {
-            $avatar = Photo::where('album_id', $album->id)->orderBy('order')->first();
-            $avatar === null ?: $album->avatar = $avatar->file;
+            $album->avatar = optional($album->photos->first())->file;
         }
 
         return view('admin.albums', compact('albums'));

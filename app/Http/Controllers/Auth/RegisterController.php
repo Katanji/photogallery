@@ -8,11 +8,18 @@ use App\Models\User;
 
 class RegisterController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         return view('registration.create');
     }
 
+    /**
+     * @param RegisterRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(RegisterRequest $request)
     {
         $user = User::create([

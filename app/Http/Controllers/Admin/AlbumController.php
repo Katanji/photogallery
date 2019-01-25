@@ -47,7 +47,7 @@ class AlbumController extends Controller
     public function store(AlbumRequest $request)
     {
         $data = [
-            'name' => $request['name'],
+            'name'        => $request['name'],
             'description' => $request['description']
         ];
 

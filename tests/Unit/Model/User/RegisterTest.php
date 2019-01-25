@@ -10,17 +10,17 @@ class RegisterTest extends TestCase
     public function testRequest()
     {
         $user = User::register(
-            $name = 'name',
-            $email = 'email',
+            $name     = 'name',
+            $email    = 'email',
             $password = 'password'
         );
 
         self::assertNotEmpty($user);
-
         self::assertEquals($name, $user->name);
         self::assertEquals($email, $user->email);
-
         self::assertNotEmpty($user->password);
-        self::assertEquals($password, $user->password);
+        self::assertTrue(\Hash::check($password, $user->password));
+
+        $user->delete();
     }
 }
